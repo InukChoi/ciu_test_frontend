@@ -1,6 +1,7 @@
 <script setup>
 import { ref, computed, watch, onMounted } from 'vue';
 import { useBoardStore } from '../stores/useBoardStore';
+import { RouterLink } from 'vue-router';
 
 const boardStore = useBoardStore();
 const currentPage = ref(1);
@@ -59,7 +60,11 @@ onMounted(async ()=> {
       <tbody>
         <tr v-for="(post, index) in paginatedPosts" :key="index" class="border">
           <td class="border p-2 text-center">{{ post.idx }}</td>
-          <td class="border p-2 text-center">{{ post.title }}</td>
+          <td class="border p-2 text-center">
+            <router-link :to="`/board_detail/${post.idx}`">
+              {{ post.title }}
+            </router-link>
+          </td>
           <td class="border p-2 text-center">{{ post.writer }}</td>
           <td class="border p-2 text-center">{{ post.commentCount }}</td>
         </tr>

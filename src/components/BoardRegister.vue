@@ -9,7 +9,7 @@ const router = useRouter();
 
 const submitPost = () => {
     if (newTitle.value.trim() !== '' && newContent.value.trim() !== '' && newAuthor.value.trim() !== '') {
-        // 여기에 게시글 저장 로직 추가 (Vuex, Pinia, API 등 활용 가능)
+        
         alert('게시글이 등록되었습니다.');
         router.push('/');
     }

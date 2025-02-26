@@ -3,9 +3,6 @@ import { ref, computed, watch, onMounted } from 'vue';
 import { useBoardStore } from '../stores/useBoardStore';
 
 const boardStore = useBoardStore();
-const newTitle = ref('');
-const newAuthor = ref('');
-const posts = ref([]);
 const currentPage = ref(1);
 const postsPerPage = 5;
 const maxVisiblePages = 5;

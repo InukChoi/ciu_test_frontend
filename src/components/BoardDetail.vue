@@ -1,9 +1,11 @@
 <script setup>
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
+import { useBoardStore } from '../stores/useBoardStore';
 
+const boardStore = useBoardStore();
 const route = useRoute();
-const postId = route.params.id;
+const postIdx = route.params.idx;
 const post = ref({
   title: "",
   writer: "",
@@ -19,12 +21,18 @@ const addComment = () => {
   if (newComment.value.writer && newComment.value.content) {
     post.value.comments.push({
         writer: newComment.value.writer,
-      text: newComment.value.content
+        content: newComment.value.content
     });
     newComment.value.writer = "";
     newComment.value.content = "";
   }
 };
+
+onMounted( async () => {
+    const response = await boardStore.fetchPostDetail(postIdx)
+    post.value = response.data;
+})
+
 </script>
 
 <template>

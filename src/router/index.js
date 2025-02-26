@@ -17,7 +17,7 @@ const routes = [
     component: BoardRegister,
   },
   {
-    path: '/board_detail/:id',
+    path: '/board_detail/:idx',
     name: 'BoardDetail',
     component: BoardDetail,
   },

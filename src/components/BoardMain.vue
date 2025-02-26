@@ -10,10 +10,9 @@ const paginatedPosts = ref([]);
 const totalPages = ref();
 
 watch(currentPage, async () => {
-    const response = await boardStore.fetchPostList((currentPage-1), postsPerPage);
-    console.log(response);
-    paginatedPosts.value = response.data.boards;
-    totalPages.value = response.data.total;
+  const response = await boardStore.fetchPostList((currentPage.value-1), postsPerPage);
+  paginatedPosts.value = response.data.boards;
+  totalPages.value = response.data.total;
 })
 
 const visiblePages = computed(() => {
@@ -39,7 +38,6 @@ const nextPage = () => {
 
 onMounted(async ()=> {
     const response = await boardStore.fetchPostList(0, postsPerPage);
-    console.log(response);
     paginatedPosts.value = response.data.boards;
     totalPages.value = response.data.total;
 })

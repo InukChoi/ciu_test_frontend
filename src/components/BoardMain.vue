@@ -68,9 +68,7 @@ onMounted(async ()=> {
       </tbody>
     </table>
     <div class="flex mt-4 justify-end" >
-        <button @click="" class="px-4 py-2 border rounded-md bg-blue-500 text-white">
-            글쓰기
-        </button>
+        <router-link to="/board_register" class="bg-blue-500 text-white px-4 py-2 rounded-md">글쓰기</router-link>
     </div>
     
     <div class="flex justify-center mt-4 space-x-2">

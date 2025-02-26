@@ -2,8 +2,10 @@
 import { onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import { useBoardStore } from '../stores/useBoardStore';
+import { useCommentStore } from '../stores/useCommentStore';
 
 const boardStore = useBoardStore();
+const commentStore = useCommentStore();
 const route = useRoute();
 const postIdx = route.params.idx;
 const post = ref({
@@ -17,8 +19,9 @@ const post = ref({
 
 const newComment = ref({ writer: "", content: "" });
 
-const addComment = () => {
+const addComment = async () => {
   if (newComment.value.writer && newComment.value.content) {
+    const response = await commentStore.registerPost({boardIdx: postIdx, writer: newComment.value.writer, content: newComment.value.content});
     post.value.comments.push({
         writer: newComment.value.writer,
         content: newComment.value.content
